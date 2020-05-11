@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Category from './components/category/category'
+import List from './components/list'
 
-function App() {
+import './App.css';
+import { connect } from 'react-redux';
+
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h4>Swiggy</h4>
       </header>
+      <div className="main-container">
+        <div className="left-section">
+
+        </div>
+        <div className="middle-section">
+          <div className="mid-left">
+            <div className="fixed-position" key={props.isAll+"fixed-position"}>
+            <Category></Category>
+            </div>
+
+          </div>
+          <div className="mid-right" key={props.isAll+"mid-right-element"}>
+            <List></List>
+
+          </div>
+
+        </div>
+        <div className="right-section">
+
+        </div>
+      </div>
     </div>
   );
 }
+function mapStateToProps(state) {
+  return {
+      isAll: state.isAll,
+      
 
-export default App;
+  }
+}
+
+export default connect(mapStateToProps)(App);
